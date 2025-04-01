@@ -4,14 +4,15 @@ import React from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
-const Card = ({ product }) => {
+const Card = ({ product, products, setProducts }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/products/${product.id}`);
-      router.reload(); // Refresh the page to reflect changes
+      setProducts(products.filter((p) => p.id !== product.id));
     } catch (error) {
       console.error("Error deleting product:", error);
     }
@@ -56,21 +57,21 @@ const Card = ({ product }) => {
         <div className="flex justify-around p-4">
           <Link
             href={`/products/${product.id}`}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="m-auto p-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            View
+            <FaEye />
           </Link>
           <Link
             href={`/products/edit/${product.id}`}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            className="m-auto bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
           >
-            Edit
+            <FaEdit />
           </Link>
           <button
             onClick={handleDelete}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            className="m-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 cursor-pointer rounded"
           >
-            Delete
+            <FaTrash />
           </button>
         </div>
       </div>

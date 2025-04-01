@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,28 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="navbar bg-base-100 shadow-sm">
+          <div className="flex-1">
+            <Link
+              href={`/`}
+              className="btn btn-ghost btn-soft btn-block text-xl"
+            >
+              Our Store
+            </Link>
+          </div>
+          <div className="flex-none">
+            <ul className="menu menu-horizontal px-1">
+              <li className="">
+                <Link
+                  href={`/products/new`}
+                  className="btn btn-soft btn-primary px-4"
+                >
+                  Create
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
         {children}
       </body>
       <ToastContainer />
