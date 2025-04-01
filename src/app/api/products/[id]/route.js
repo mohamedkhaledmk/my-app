@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 const API_URL = "https://fakestoreapi.com/products";
 
 // ✅ Fetch a single product (GET)
-export async function GET(req, { params }) {
+export async function GET(req, props) {
+  const params = await props.params;
   try {
     const res = await fetch(`${API_URL}/${params.id}`);
     if (!res.ok) throw new Error("Product not found");
@@ -18,7 +19,8 @@ export async function GET(req, { params }) {
 }
 
 // ✅ Update a product (PUT)
-export async function PUT(req, { params }) {
+export async function PUT(req, props) {
+  const params = await props.params;
   try {
     const body = await req.json();
     const res = await fetch(`${API_URL}/${params.id}`, {
@@ -37,7 +39,8 @@ export async function PUT(req, { params }) {
 }
 
 // ✅ Delete a product (DELETE)
-export async function DELETE(req, { params }) {
+export async function DELETE(req, props) {
+  const params = await props.params;
   try {
     await fetch(`${API_URL}/${params.id}`, { method: "DELETE" });
     return NextResponse.json({ message: "Product deleted" }, { status: 200 });

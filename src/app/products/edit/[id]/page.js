@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditProduct({ params }) {
+export default function EditProduct(props) {
+  const params = use(props.params);
   const [product, setProduct] = useState({ title: "", price: "" });
   const router = useRouter();
 

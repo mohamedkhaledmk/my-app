@@ -1,12 +1,15 @@
+import axios from "axios";
 import Image from "next/image";
 
 async function getProduct(id) {
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-  return res.json();
+  // const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const res2 = await axios.get(`http://localhost:3000/api/products/${id}`);
+  return res2.data;
 }
 
 export default async function ProductDetails({ params }) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
@@ -19,6 +22,7 @@ export default async function ProductDetails({ params }) {
               src={product.image}
               alt={product.title}
               className="w-full h-auto object-cover"
+              priority
             />
           </div>
           <div className="md:w-1/2 p-8">
