@@ -3,8 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 async function getProduct(id) {
-  // const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-  const res2 = await axios.get(`http://localhost:3000/api/products/${id}`);
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+  const res2 = await axios.get(`${baseURL}/api/products/${id}`);
   return res2.data;
 }
 

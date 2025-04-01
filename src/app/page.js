@@ -6,7 +6,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 async function getProducts() {
-  const res = await axios.get("http://localhost:3000/api/products");
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+  const res = await axios.get(`${baseURL}/api/products`);
   console.log("data", res.data);
   return res.data;
 }

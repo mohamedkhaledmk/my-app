@@ -12,12 +12,14 @@ export default function CreateProduct() {
   const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
     e.preventDefault();
 
     if (!title || !price) return toast.error("All fields are required.");
 
     try {
-      await axios.post(`http://localhost:3000/api/products`, { title, price }); // Handle success (e.g., show a success message or redirect)
+      await axios.post(`${baseURL}/api/products`, { title, price }); // Handle success (e.g., show a success message or redirect)
 
       console.log("Product created successfully!");
 

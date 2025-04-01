@@ -21,6 +21,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
   return (
     <html lang="en">
       <Head>
